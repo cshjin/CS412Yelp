@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{matlab-prettifier}
+\usepackage{url}
+
+\title{CS 412: Intro to Machine Learning\\Project Proposal}
+\author{}
+\date{}
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+
+\section*{Group Members}
+Hongwei Jin
+
+\noindent Krutarth Joshi
+
+\noindent Aayush Kataria
+
+\noindent Natawut Monaikul
+
+\noindent Ashwin Sattiraju
+
+\noindent Zhan Shi
+
+\noindent Dan Zhao
+
+\section*{Dataset}
+We will be using the dataset provided directly from Yelp, which can be found at
+
+\begin{center}
+\url{http://www.yelp.com/dataset_challenge}.
+\end{center}
+
+\noindent The data consist of JSON files which contain reviews and tips about businesses, information about businesses such as hours and location, and information about users giving the reviews.
+
+\section*{Machine Learning Tasks}
+Our main task to predict the rating a user will assign to a business. Ratings are a whole-valued number between 1 and 5 inclusive.
+
+\section*{Techniques}
+There are two directions in which we intend on going for this task. One direction is to predict the user's rating based only on the text in that user's review. In this approach, we would take into account the following features:
+\begin{itemize}
+\item
+Ratio of capital letters
+
+\item
+Positive and negative words
+
+\item
+Frequency of common versus arcane words
+
+\item
+Length of text
+
+\item
+Amount of punctuation
+
+\item
+Occurrences of consecutive repeated letters
+\end{itemize}
+The other direction is to predict the user's rating based on the user's profile, i.e., information about the user as well as his/her past reviews of other businesses. In this approach, we would take into account the following features:
+\begin{itemize}
+\item
+Length of time of elite status
+
+\item
+Number of votes (funny, useful, or cool)
+
+\item
+Average star ratings
+
+\item
+``Yelping since''
+
+\item
+Number of compliments
+
+\item
+Number of friends
+
+\item
+Number of reviews given
+
+\item
+Ratings of past reviews of other businesses, potentially separated by the type of business to find businesses that are closest to the one in question
+\end{itemize}
+In both approaches, we intend to create a classifier using these features that will predict to which of five classes (whole-valued star ratings from 1 to 5) a review belongs. We would like to test different methods of classification, including Naive Bayes and decision trees. We plan to see which approach produces better results or if a combination of features from both approaches can produce even better results. Our target programming language is Python.
+
+\end{document}
