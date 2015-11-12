@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usepackage{url}
+
+\title{CS 412: Intro to Machine Learning\\Progress Report}
+\author{}
+\date{}
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+
+\section*{Branches}
+We have divided up our project into two branches to approach our problem from two different directions. The main task is to predict a user's rating of a business. The two approaches are based on different aspects of the data: one focuses on the text and date of a review, while the other focuses on the user's profile, including their previous ratings and friend base.
+\begin{enumerate}
+\item 
+\textbf{Profile-Based Branch:}
+
+Hongwei Jin
+
+\noindent Krutarth Joshi
+
+\noindent Ashwin Sattiraju
+
+\noindent Zhan Shi
+
+
+\item 
+\textbf{Text-Based Branch:}
+
+\noindent Dan Zhao
+
+\noindent Natawut Monaikul
+
+\noindent Aayush Kataria
+
+\end{enumerate}
+
+\section*{Accomplishments}
+Our main accomplishments so far have to do with cleaning the data and extracting features from the data.
+\begin{enumerate}
+\item 
+\textbf{Profile-Based Data:}
+
+\noindent The initial data obtained from the Yelp Dataset Challenge website was in JSON format. We converted the data into CSV files to make it easy to work with in Python. We extracted about 90 features from the dataset. Out of 90 features, the top 20 most useful features will be used for developing our model.
+
+
+\begin{itemize}
+\item Original Features:$\qquad$ \begin{flushleft}Accepts Credit Cards, Accepts Insurance, Ages Allowed, Alcohol, Attire, BYOB, BYOB/Corkage, By Appointment Only, Caters, Coat Check, Corkage, Delivery, Dogs Allowed, Drive-Thru, Good For Dancing, Good For Groups, Good For Kids, Happy Hour, Has TV, Noise Level, Open 24 Hours, Order at Counter, Outdoor Seating, Price Range, Smoking, Take-out, Takes Reservations, Waiter Service, Wheelchair Accessible, Wi-Fi, attr\_casual, attr\_classy, attr\_divey, attr\_hipster, attr\_intimate, attr\_romantic, attr\_touristy, attr\_trendy, attr\_upscale, average\_stars, city, comp\_cool, comp\_cute, comp\_funny, comp\_hot, comp\_list, comp\_more, comp\_note, comp\_photos, comp\_plain, comp\_profile, comp\_writer, elite, fans, friends, goodfor\_breakfast, goodfor\_brunch, goodfor\_dessert, goodfor\_dinner, goodfor\_latenight, goodfor\_lunch, latitude, longitude, music\_background\_music, music\_dj, music\_jukebox, music\_karaoke, music\_live, music\_playlist, music\_video, open, parking\_garage, parking\_lot, parking\_street, parking\_valet, parking\_validated, pt\_amex, pt\_cash\_only, pt\_discover, pt\_mastercard, pt\_visa, res\_dairy-free, res\_gluten-free, res\_halal, res\_kosher, res\_soy-free, res\_vegan, res\_vegetarian, review\_count, stars, state, votes\_cool, votes\_funny, votes\_useful, y\_rate, yelping\_since\end{flushleft}
+
+\item Most Related Features(by PCA, anova):$\qquad$ \begin{flushleft}By Appointment Only, Good For Groups, Noise Level, Open 24 Hours, Wi-Fi, attr\_upscale, average\_stars, goodfor\_breakfast, goodfor\_brunch, goodfor\_dessert, goodfor\_latenight, goodfor\_lunch, parking\_lot, pt\_cash\_only, res\_vegetarian, review\_count, stars, votes\_cool, votes\_useful, y\_rate, yelping\_since\end{flushleft}
+
+\end{itemize}
+
+\item 
+\textbf{Text-Based Data:}
+The data was divided into a training set and test set. We plan to use cross-validation, but we would like to run a full iteration on one split before doing several. As each reviewer can also leave a ``tip'' for a business (a short, typically one-liner to sum up their thoughts) alongside their full review, we first matched up tips to reviews and added that text to the review text for feature extraction. Here are the features we have extracted and plan to use in several classifiers:
+\begin{itemize}
+\item Word positivity/negativity - We have extracted this feature in two ways. The first involves counting words in 5-star reviews and words in 1-star reviews. We also count words in all reviews and remove the most frequent words from the 5-star and 1-star counts (to account for frequently-used words regardless of rating). Then the words are assigned weights based on their relative frequencies in each of the review types -- positive for 5-star reviews and negative for 1-star reviews. These are then used to give a total ``weight'' to a review based on the words used in it. The other method of extraction is through SentiWordNet, a lexical database in which each word has an associated positivity, negativity, and neutrality score. 
+\item Punctuation - We have extracted the amount of certain types of punctuation used in a review. The idea is that more polarized reviews use more exclamation points and question marks. The lack of punctuation can also indicate a frenetic reviewer giving a poor review. We also count quotation marks, as this can indicate sarcasm, and ultimately, a poor review.
+
+\item Capital letters - We have extracted the amount of capitalization used within a word. As with punctuation, people may tend to use all caps to express a strong emotion, indicating a polarized review (either 1 star or 5 stars). We only count capital letters within a single word, as counting all capital letters would introduce noise (proper nouns, capitalization rules, etc.).
+
+\item Consecutive repeated letters - As with capital letters and punctuation, it is common to repeat a letter consecutively many times to emphasize a word (e.g., \emph{yummmmm} or \emph{baaaaaad}). We again hope that this will be an indicator of polarized reviews.
+
+\item Time stamp - We have extracted several features from the time stamp of a review: whether the review was written in the morning (6am to noon), afternoon (noon to 6pm), or evening (6pm to midnight), the season in which it was written, whether or not the review was written on a weekend or national holiday (as opposed to a regular weekday), and the date itself. These features may reflect seasonal attitudes, time-of-day behaviors, and current trends (around a specific time period).
+
+\item Text length - As it implies, we also extracted the length of the text. Polarized reviews tend to take one of the extremes in terms of length.
+
+\item POS tags (specifically, adjective and adverb count) - We feel that polarized reviews may possibly use a greater number of adjectives than neutral reviews, so we have used a parser to tag sentences and extract the number of adjectives and adverbs used.
+
+\end{itemize}
+    
+\end{enumerate}
+
+\section*{Changes}
+
+
+\section*{Current Goals}
+\begin{enumerate}
+\item 
+\textbf{Profile-Based Branch:}
+
+\begin{itemize}
+\item 
+We would like to train 4 classification models and compare and contrast the results obtained: Naive Bayes, Random Forest, Logistic Regression, and Support Vector Machines.
+
+\item 
+Using collaborative filtering, we would like to build a recommender system. It is item-based and user-based, and we intend to use matrix factorization.
+
+\end{itemize}
+
+\item 
+\textbf{Text-Based Branch:}
+\begin{itemize}
+\item We would like to train classifiers based on the features mentioned in this branch to get initial results.
+
+\item We would like to investigate which of the features are most useful and which are not as useful, as this can be a reflection of human time-sensitive behavior (time stamp features) or polarity expression (other text features).
+
+\item We would like to see if word positivity and negativity can be expanded to bigrams and trigrams, as well as parsing the sentence fully to instead look at whole noun phrases and verbal expressions.
+\end{itemize}
+
+
+\end{enumerate}
+
+\end{document}
