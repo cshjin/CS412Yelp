@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 import pandas as pd
-import pandas as pd
 from sklearn import decomposition, cross_validation
 import numpy as np
 from sklearn.feature_extraction import DictVectorizer
@@ -15,6 +14,11 @@ from sklearn.naive_bayes import GaussianNB
 
 import scipy.sparse
 import cPickle as pickle
+
+from sklearn import metrics
+from sklearn.metrics import accuracy_score
+from sklearn.externals import joblib
+from collections import OrderedDict
 
 def clean_user_data():
     with open('../data/yelp_academic_dataset_user.json') as infile:
@@ -156,6 +160,32 @@ def clean_busi_data():
             json.dump(dataset, outfile, indent=2)
 
 
+def get_nominal_integer_dict(nominal_vals):
+    d = {}
+    for val in nominal_vals:
+        if val not in d:
+            current_max = max(d.values()) if len(d) > 0 else -1
+            d[val] = current_max + 1
+    return d
+
+
+def convert_to_integer(srs):
+    d = get_nominal_integer_dict(srs)
+    return srs.map(lambda x: d[x])
+
+
+def convert_strings_to_integer(df):
+    ret = pd.DataFrame()
+    for column_name in df:
+        column = df[column_name]
+        if column.dtype == 'string' or column.dtype == 'object':
+            ret[column_name] = convert_to_integer(column)
+        else:
+            ret[column_name] = column
+    return ret
+
+
+
 def update_review():
     def merge_dict(x,y):
         z = x.copy()
@@ -175,14 +205,27 @@ def update_review():
             u, b, r = line.strip().split(',')
             if user_data.get(u) is not None and busi_data.get(b) is not None:
                 md = merge_dict(user_data[u], busi_data[b])
-                # md['y_rate'] = r
+                md['y_rate'] = r
                 reviews.append(md)
                 rate.append(int(r))
-    print "working sklearn"
+    reviews = convert_strings_to_integer(pd.DataFrame(reviews))
+    reviews.to_csv("../data/processed_reivews.csv")
     
+    # print "working sklearn"
+
+    # y = rate
+    # # reviews = reviews.drop("y_rate")
+    # X = reviews.values.tolist()
+
+    # print reviews
     # data = pd.read_csv("../data/dataset_review_combined.csv")
     # print(data)
     # data = reviews
+    # v = DictVectorizer(sparse=False)
+    # X = v.fit_transform(reviews)
+    # print v.get_feature_names()
+    # print DictVectorizer().fit_transform(reviews).get_feature_names()
+
 
     # get x
     # get y
@@ -190,12 +233,12 @@ def update_review():
     # y = dfList = np.asarray(data['y_rate'].tolist())
     # del data['y_rate']
     # x = reviews
-    x = DictVectorizer(sparse=False).fit_transform(reviews)
+    # x = DictVectorizer(sparse=False).fit_transform(reviews)
     
     # print x
     # x_missing = x.copy()
     # x_missing[np.where(missing)]
-    y = np.asarray(rate)
+    # y = np.asarray(rate)
 
     # x = scipy.sparse.csr_matrix(x)
     # with open('x_all_data.dat', 'wb') as outfile:
@@ -203,8 +246,8 @@ def update_review():
     # with open('y_all_data.dat', 'wb') as outfile:
     #     pickle.dump(y, outfile, pickle.HIGHEST_PROTOCOL)
 
-    np.save(file('x_all_data.bin', 'wb'), x)
-    np.save(file('y_all_data.bin', 'wb'), y)
+    # np.save(file('x_all_data.bin', 'wb'), X)
+    # np.save(file('y_all_data.bin', 'wb'), y)
     # x.dump('x_all_data.bin')
     # y.dump('y_all_data.bin')
 
@@ -218,12 +261,17 @@ def run_model():
     # # y = np.concatenate((y1,y2), axis=0)
     # x = np.vstack([x1,x2])
     # y = np.vstack([y1,y2])
-    x = np.load(file("x_all_data.bin", 'rb'))
-    y = np.load(file("y_all_data.bin", 'rb'))
+    # x = np.load(file("x_all_data.bin", 'rb'))
+    # y = np.load(file("y_all_data.bin", 'rb'))
     # with open('x_all_data.dat', 'rb') as infile:
     #     x = pickle.load(infile)
     # with open('y_all_data.dat', 'rb') as infile:
     #     y = pickle.load(infile)
+
+    reviews = pd.read_csv("../data/processed_reivews.csv")
+    y = reviews['y_rate'].tolist()
+    reviews = reviews.drop("y_rate", axis=1)
+    x = reviews.values.tolist()
 
     print 'fit_transform finished'
     X_train, X_test, y_train, y_test = cross_validation.train_test_split(x, y, test_size=0.1, random_state=0)
@@ -235,40 +283,112 @@ def run_model():
       ('features', FeatureUnion([
         ('ngram_tf_idf', Pipeline([
           # ('one_hot_encoding', OneHotEncoder(categorical_features=)),
-          ('anova', SelectKBest(f_regression, k=5)),
-          ('pca', decomposition.PCA(n_components=5))
+          ('anova', SelectKBest(f_classif, k=10)),
+          ('pca', decomposition.PCA(n_components=10))
 
         ]))])),
       # ('classifier', SVC())
       ('classifier', GaussianNB())
     ])
+    """ """
     im = Imputer(missing_values='NaN',
                           strategy="mean",
                           axis=0)
     x = im.fit_transform(X_train)
     print x.shape
     # y = im.fit_transform(y_train)
-    anova_k = SelectKBest(f_classif, k=5)
+    anova_k = SelectKBest(f_classif, k=10)
     anova_k.fit_transform(x, y_train)
     print anova_k.scores_
     print len(anova_k.scores_)
+    cols_list = reviews.columns.values.tolist()
+    list_scores = anova_k.scores_
 
-    pipeline.fit(X_train, y_train)
+    cols_scores = {}
+    for i in range(len(cols_list)):
+        if str(list_scores[i]) != 'nan':
+            cols_scores[cols_list[i]] = list_scores[i]
+        else:
+            continue
 
-    print 'fit finished'
-    y_pred = pipeline.predict(X_test)
-    print 'predict finished'
-    print(precision_recall_fscore_support(y_test, y_pred))
+    #Sort the score dictionary
+    print '*** After sorted ****'
+    sorted_cols = OrderedDict(sorted(cols_scores.items(), key=lambda t: t[1],reverse=True))
+    print sorted_cols
+    """ pipeline Results """
+    # pipeline.fit(X_train, y_train)
+    # joblib.dump(pipeline, "model.pkl")
+
+    # print 'fit finished'
+    # y_pred = pipeline.predict(X_test)
+    # print 'predict finished'
+    # print(precision_recall_fscore_support(y_test, y_pred))
+
+
+
+    # Results = {}
+    # precision = metrics.precision_score(y_test, y_pred)
+    # recall = metrics.recall_score(y_test, y_pred)
+    # f1 = metrics.f1_score(y_test, y_pred)
+    # accuracy = accuracy_score(y_test, y_pred)
+
+    # data = {'precision':precision,
+    # 'recall':recall,
+    # 'f1_score':f1,
+    # 'accuracy':accuracy}
+
+    # Results['clf'] = data
+    # cols = ['precision', 'recall', 'f1_score', 'accuracy']
+    # print pd.DataFrame(Results).T[cols].T
+
+    """ """
     # print pipeline.named_steps['features']
     # v = DictVectorizer(sparse=False)
     # X = v.fit_transform(reviews[201780:201790])
     # print X
     # pd.DataFrame(reviews).to_csv('../data/dataset_review_combined.csv')
+    # 
+def load_model():
+    reviews = pd.read_csv("../data/processed_reivews.csv")
+    y = reviews['y_rate'].tolist()
+    reviews = reviews.drop("y_rate", axis=1)
+    x = reviews.values.tolist()
+
+    print 'fit_transform finished'
+    X_train, X_test, y_train, y_test = cross_validation.train_test_split(x, y, test_size=0.1, random_state=0)
+    pipeline = joblib.load("model.pkl")
+    y_pred = pipeline.predict(X_test)
+    print 'predict finished'
+    # print(precision_recall_fscore_support(y_test, y_pred))
+    precision, recall, fscore, support = precision_recall_fscore_support(y_test, y_pred)
+ 
+    print('precision: {}'.format(precision))
+    print('recall: {}'.format(recall))
+    print('fscore: {}'.format(fscore))
+    print('support: {}'.format(support))
+
+    # Results = {}
+    # precision = metrics.precision_score(y_test, y_pred, average="micro")
+    # recall = metrics.recall_score(y_test, y_pred, average="micro")
+    # f1 = metrics.f1_score(y_test, y_pred, average="micro")
+    # accuracy = accuracy_score(y_test, y_pred)
+
+    # data = {'precision':precision,
+    # 'recall':recall,
+    # 'f1_score':f1,
+    # 'accuracy':accuracy}
+
+    # Results['clf'] = data
+    # cols = ['precision', 'recall', 'f1_score', 'accuracy']
+    # print pd.DataFrame(Results).T[cols].T
+
+
 def main():
     # clean_user_data()
     # clean_busi_data()
     # update_review()
     run_model()
+    # load_model()
     # busi_df = pd.read_json('../data/dataset_business_v2.json')
     # # print busi_df.transpose()
     # user_df = pd.read_json('../data/dataset_user_v2.json')
