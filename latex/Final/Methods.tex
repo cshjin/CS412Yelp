@@ -1,0 +1,65 @@
+\section{Methods}
+
+Given the large dataset released by Yelp (retrieved from \cite{yelp-dataset}), we must first determine what subset of the data we will focus on to make our predictions. We explored two directions based on the knowledge source we used to approach the machine learning task: a review-based branch and a profile-based branch.
+
+\subsection{Review-Based Branch}
+
+When a user rates a business, they can also leave a textual review of the business discussing what they did and did not enjoy about the business to justify their star rating. In the Yelp dataset, each review is listed with the user and the business, the text in the review, the star rating given by the user, and the date of the review. In addition to a full review, a user can also leave a ``tip'' about the business -- a short, simple piece of information a user wants to impart on other users to summarize their thoughts or feelings about a business. These tips can be considered as part of the textual review. In the review-based branch, we claim that all of this information is sufficient to predict the star rating a user will give a business.
+
+\subsubsection{Features}
+We extract several features from users' reviews:
+\begin{itemize}
+\item {\bf Sentiment score.} Given a textual review, we would like to score the positivity or negativity of the text. We calculate this score by summing the positivity of negativity ratings of each individual word. There are many ways to determine these word ratings. One method, as described and employed in \cite{hu-liu}, is to use a semantic network such as WordNet \cite{wordnet}, which stores adjectives as bipolar clusters -- a word such as \emph{fast} would have an entry with its synonyms (such as \emph{quick}, \emph{swift}, \emph{prompt}, etc.) and its opposing word (\emph{slow}), along with its synonyms. A set of positive words can then be obtained by starting with a ``seed'' set of positive words and searching all of the neighbors, where all synonyms would also be considered positive words, while all opposing clusters would be considered negative words. This has also led to the development of SentiWordNet \cite{sentiwordnet}, a resource for obtaining positivity and negativity ratings of words.
+
+However, in our system, we would like to minimize the use of external resources. Therefore, to obtain ratings for words strictly using only our training set, we first calculate relative frequencies of each word in five-star reviews and one-star reviews in the training set. The idea behind this is that positive words will appear frequently in the most positive reviews, while negative words will appear frequently in the most negative reviews. Clearly, many words inherently occur frequently, regardless of its positivity or negativity, so we also remove the 500 most frequent words across all reviews in the training set to filter out common words. The relative frequencies of the remaining words then provide ``scores'' for each word, where positive words receive a score equal to their relative frequencies, and negative words receive a score equal to the negative value of their relative frequencies. A list of some of the words extracted using this method are given in Table \ref{posneglist}. Using these word lists, the sentiment score of a review is simply the sum of the weights over all words in the text that are found in the lists. Not only did this method provide a way to score words, it also exposed some common aspects of businesses that people tend to focus on, for positive or for negative reasons, using words that would otherwise have no connotation of polarity in a general context. For example, \emph{dry} was found to be a commonly used word in negative reviews; however, in its most general sense, \emph{dry} arguably does not necessarily have a positive or negative connotation, but in the context of, say, food, it is generally a negative word.
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|c||c|c|}
+\hline
+\multicolumn{2}{|c||}{\bf Positive Words} & \multicolumn{2}{|c|}{\bf Negative Words}\\
+\hline
+\bf Word & \bf Score & \bf Word & \bf Score\\
+\hline
+thank & 0.00145 & worst & -0.00378\\
+perfectly & 0.00134 & horrible & -0.00343\\
+easy & 0.00132 & rude & -0.00313\\
+yummy & 0.00129 & terrible & -0.00278\\
+reasonable & 0.00129 & waited & -0.00254\\
+professional & 0.00127 & poor & -0.00188\\
+attentive & 0.00116 & problem & -0.00181\\
+glad & 0.00112 & bill & -0.00176\\
+wow & 0.00112 & leave & -0.00166\\
+recommended & 0.00105 & dry & -0.00143\\
+\hline
+\end{tabular}
+\caption{Sample positive and negative words and scores}
+\label{posneglist}
+\end{table}
+
+\item {\bf Punctuation count.} When people become emotionally excited, whether it be in a positive or a negative manner, their ``online language'' tends to reflect their emotions \cite{emotion}. One of the features of this language is the amount of punctuation used. For example, ``Very good!!!!'' and ``Very bad!!!!'' contain several exclamation points and reflect a strong, emphasized, emotional statement. Furthermore, punctuation is commonly used to draw emoticons, which can again reflect the polarity of the text.
+
+\item {\bf Cap word count.} Another feature presented in \cite{emotion} in conjunction with excessive punctuation is the use of upper-case letters. For example, ``I LOVE it'' and ``I HATE it'' use a completely capitalized word to emphasize the word, indicating an expression of strong emotion.
+
+\item {\bf Emphasized word count.} The final character-based feature we consider (again, as proposed in \cite{emotion}) is the number of words which contain the intentional repetition of letters in a word, e.g., \emph{mmmmmm} and \emph{ewwwwwww}.
+
+\item {\bf Word count.} A general feature extracted from a piece of text is the number of words in the text. We do not posit a specific relationship between the number of words and the polarity of a review, but we include the feature in hopes that there might be.
+
+\item {\bf Adjective count.} The number of adjectives used in a piece of text can also suggest the polarity/neutrality of it \cite{adjectives}. Therefore, we extract as a feature the number of adjectives used in a review with the help of a part-of-speech tagger (provided by Python's \texttt{nltk} package).
+
+\item {\bf Adverb count.} It is also shown in \cite{adjectives} that the number of adverbs used in a piece of text reflects the writer's sentiment, so using the same method, we also consider this feature.
+
+\item {\bf Weekday/Weekend.} It has been found in a study analyzing product reviews in 2014 that weekday purchases receive more positive feedback than weekend purchases \cite{online-habit}. In light of this, we also use the date of a review to determine whether the review was left on a weekday (Monday-Thursday) or a weekend (Friday-Sunday) and use this as our final feature.
+
+\end{itemize}
+
+\subsubsection{Classifiers}
+We use a variety of classifiers with these features to predict the star rating of a review (with the help of Python's \texttt{scikit} package): Decision Tree, Random Forest (with 10 decision trees), AdaBoost (with decision trees as weak learners), 5-Nearest Neighbors, 10-Nearest Neighbors, and 20-Nearest Neighbors. Each classifier predicts one of five labels (the five whole-valued star ratings) for each review in the test set.
+
+\subsection{Profile-Based Branch}
+
+\subsubsection{Features}
+
+\subsubsection{Classifiers}
+
+\subsubsection{Recommender System}

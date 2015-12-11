@@ -1,0 +1,73 @@
+\begin{thebibliography}{10}
+
+\bibitem{adjectives}
+{\sc Benamara, F., Cesarano, C., Picariello, A., Reforgiato, D., and
+  Subrahmanian, V.}
+\newblock Sentiment analysis: Adjectives and adverbs are better than adjectives
+  alone.
+\newblock In {\em International Conference on Weblogs and Social Media -
+  ICWSM\/} (2007).
+
+\bibitem{online-habit}
+{\sc {Digital Strategy Consulting Ltd.}}
+\newblock {Online review habits: Weekday purchases get better feedback}.
+\newblock
+  \url{http://www.netimperative.com/2015/03/online-review-habits-weekday-purchases-get-better-feedback/},
+  2015.
+
+\bibitem{sentiwordnet}
+{\sc Esuli, A., and Sebastiani, F.}
+\newblock {SENTIWORDNET}: A publicly available lexical resource for opinion
+  mining.
+\newblock In {\em Proceedings of the 5th Conference on Language Resources and
+  Evaluation (LREC’06)\/} (Genova, Italy, 2006), pp.~417--424.
+
+\bibitem{hu-liu}
+{\sc Hu, M., and Liu, B.}
+\newblock Mining and summarizing customer reviews.
+\newblock In {\em Proceedings of the ACM SIGKDD International Conference on
+  Knowledge Discovery \& Data Mining (KDD-2004)\/} (Seattle, Washington, USA,
+  2004).
+
+\bibitem{wordnet}
+{\sc Miller, G.~A.}
+\newblock {WordNet}: A lexical database for {English}.
+\newblock {\em Communications of the ACM 38}, 11 (1995), 39--41.
+
+\bibitem{book-ratings}
+{\sc Mooney, R.~J., and Roy, L.}
+\newblock Content-based book recommending using learning for text
+  categorization.
+\newblock In {\em Proceedings of the fifth ACM conference on Digital
+  libraries\/} (2000), pp.~195--204.
+
+\bibitem{movie-ratings}
+{\sc Oghina, A., Breuss, M., Tsagkias, M., and de~Rijke, M.}
+\newblock Predicting imdb movie ratings using social media.
+\newblock In {\em Advances in Information Retrieval}, vol.~7224. Springer
+  Berlin Heidelberg, 2012, pp.~503--507.
+
+\bibitem{youtube-ratings}
+{\sc Siersdorfer, S., Chelaru, S., Nejdl, W., and Pedro, J.~S.}
+\newblock How useful are your comments?: analyzing and predicting youtube
+  comments and comment ratings.
+\newblock In {\em Proceedings of the 19th international conference on World
+  wide web\/} (2010), pp.~891--900.
+
+\bibitem{emotion}
+{\sc Yassine, M., and Hajj, H.}
+\newblock A framework for emotion mining from text in online social networks.
+\newblock In {\em 2010 IEEE International Conference on Data Mining
+  Workshops\/} (Genova, Italy, 2010), pp.~1136--1142.
+
+\bibitem{yelp-stats}
+{\sc {Yelp Inc.}}
+\newblock {An Introduction to Yelp Metrics}.
+\newblock \url{http://www.yelp.com/factsheet}, September 2015.
+
+\bibitem{yelp-dataset}
+{\sc {Yelp Inc.}}
+\newblock {Yelp Dataset Challenge}.
+\newblock \url{http://www.yelp.com/dataset_challenge}, 2015.
+
+\end{thebibliography}

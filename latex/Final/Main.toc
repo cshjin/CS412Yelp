@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {subsection}{\numberline {1.1}Background}{2}
+\contentsline {subsection}{\numberline {1.2}Problem}{2}
+\contentsline {section}{\numberline {2}Methods}{2}
+\contentsline {subsection}{\numberline {2.1}Review-Based Branch}{3}
+\contentsline {subsubsection}{\numberline {2.1.1}Features}{3}
+\contentsline {subsubsection}{\numberline {2.1.2}Classifiers}{5}
+\contentsline {subsection}{\numberline {2.2}Profile-Based Branch}{5}
+\contentsline {subsubsection}{\numberline {2.2.1}Features}{5}
+\contentsline {subsubsection}{\numberline {2.2.2}Classifiers}{5}
+\contentsline {subsubsection}{\numberline {2.2.3}Recommender System}{5}
+\contentsline {section}{\numberline {3}Evaluation}{5}
+\contentsline {subsection}{\numberline {3.1}Review-Based Branch}{5}
+\contentsline {subsection}{\numberline {3.2}Profile-Based Branch}{6}
+\contentsline {subsubsection}{\numberline {3.2.1}Classifier Evaluation}{6}
+\contentsline {subsubsection}{\numberline {3.2.2}Recommender System Evaluation}{6}
+\contentsline {section}{\numberline {4}Results}{6}
+\contentsline {subsection}{\numberline {4.1}Review-Based Branch}{6}
+\contentsline {subsection}{\numberline {4.2}Profile-Based Branch}{6}
+\contentsline {section}{\numberline {5}Conclusion}{6}
+\contentsline {subsection}{\numberline {5.1}Summary}{7}
+\contentsline {subsection}{\numberline {5.2}Lessons Learned}{7}
+\contentsline {subsection}{\numberline {5.3}Future Work}{7}
