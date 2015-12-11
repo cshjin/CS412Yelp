@@ -1,9 +1,10 @@
 \section{Conclusion}
 
-This is the conclusion.
-
 \subsection{Summary}
+The results from both branches show that using the features described in Section 2, our classifiers exhibited a mediocre but promising performance. The ``soft'' accuracy reported in the review-based branch and the root mean squared error in the profile-based branch suggest that, while our classifiers were not extremely accurate, they were generally very close to predicting the actual labels, at least above expected from random assignment. Moreover, each of the classifiers used performed with about the same accuracy as the other classifiers in each task. 
 
 \subsection{Lessons Learned}
+On a low level, we were able to become much more familiar with packages in Python, specifically \texttt{nltk}, \texttt{scikit}, and \texttt{crab}, that greatly increased our productivity in this project. We were also able to gain experience in cleaning and dividing data appropriately for our tasks. We learned that NLP techniques do not necessarily increase classifier performance and that more features do not necessarily imply greater accuracy. Furthermore, the results from our experiments have shown us that in classifying reviews, positive and negative words are very important, and if we are to continue in another direction, this feature must be considered at the very least.
 
 \subsection{Future Work}
+In future work, we would like to find ways of improving the base accuracy of our classifiers. One possible direction is to consider combining the best and most important features from both branches to have a better feature vector for the classifiers. On the review-based side, we may also want to consider using a topic modeling scheme, such as LDA, to have different quantitative measures on each word, as we found that word frequency in positive and negative reviews played a large role in classification. This direction has shown promise in \cite{lda}, authored by a grand prize winner of the Yelp Dataset Challenge -- the motivation for this project. In our approach, we only considered frequent words in one-star and five-star reviews, but there may be some information in word frequencies in more neutral reviews that may help the classifiers perform better on non-polarized reviews. We also noted an imbalance in the dataset, which is something we may account for in the future by choosing a more proper dataset.

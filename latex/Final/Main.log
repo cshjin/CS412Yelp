@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.30)  11 DEC 2015 17:06
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.30)  11 DEC 2015 17:52
 entering extended mode
 **Main.tex
 (C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Main.tex
@@ -432,11 +432,12 @@ Package pdftex.def Info: compoffbyone.png used on input line 51.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) (C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Conclusion.tex)
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Main.bbl [9 <C:/U
-sers/Natawut/Documents/uic/MachineLearning/Project/Final/compexaccuracy.png> <C
-:/Users/Natawut/Documents/uic/MachineLearning/Project/Final/compbinaccuracy.png
->]
+) (C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Conclusion.tex
+[9 <C:/Users/Natawut/Documents/uic/MachineLearning/Project/Final/compexaccuracy
+.png> <C:/Users/Natawut/Documents/uic/MachineLearning/Project/Final/compbinaccu
+racy.png>]) [10 <C:/Users/Natawut/Documents/uic/MachineLearning/Project/Final/c
+ompoffbyone.png>]
+(C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Main.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 12--17
 []\OT1/cmr/m/sc/10 Digital Strat-egy Con-sult-ing Ltd.  \OT1/cmr/m/n/10 On-line
  re-view habits: Week-
@@ -451,14 +452,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--17
 Missing character: There is no â in font cmti10!
 Missing character: There is no € in font cmti10!
 Missing character: There is no ™ in font cmti10!
-[10 <C:/Users/Natawut/Documents/uic/MachineLearning/Project/Final/compoffbyone.
-png>]) [11]
+[11]) [12]
 (C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Main.aux) ) 
 Here is how much of TeX's memory you used:
- 5392 strings out of 493921
- 78105 string characters out of 3147275
- 142251 words of memory out of 3000000
- 8574 multiletter control sequences out of 15000+200000
+ 5395 strings out of 493921
+ 78138 string characters out of 3147275
+ 142267 words of memory out of 3000000
+ 8577 multiletter control sequences out of 15000+200000
  10723 words of font info for 40 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  36i,8n,43p,1713b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -471,9 +471,9 @@ pe1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
 tt10.pfb>
-Output written on Main.pdf (12 pages, 307217 bytes).
+Output written on Main.pdf (13 pages, 310212 bytes).
 PDF statistics:
- 84 PDF objects out of 1000 (max. 8388607)
+ 88 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

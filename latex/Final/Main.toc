@@ -18,6 +18,6 @@
 \contentsline {subsection}{\numberline {4.1}Review-Based Branch}{7}
 \contentsline {subsection}{\numberline {4.2}Profile-Based Branch}{9}
 \contentsline {section}{\numberline {5}Conclusion}{9}
-\contentsline {subsection}{\numberline {5.1}Summary}{10}
+\contentsline {subsection}{\numberline {5.1}Summary}{9}
 \contentsline {subsection}{\numberline {5.2}Lessons Learned}{10}
 \contentsline {subsection}{\numberline {5.3}Future Work}{10}

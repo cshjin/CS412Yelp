@@ -35,6 +35,11 @@
   Knowledge Discovery \& Data Mining (KDD-2004)\/} (Seattle, Washington, USA,
   2004).
 
+\bibitem{lda}
+{\sc Linshi, J.}
+\newblock Personalizing yelp star ratings: A semantic topic modeling approach.
+\newblock In {\em Yelp Dataset Challenge}. 2013.
+
 \bibitem{wordnet}
 {\sc Miller, G.~A.}
 \newblock {WordNet}: A lexical database for {English}.
