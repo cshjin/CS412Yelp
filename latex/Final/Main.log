@@ -1,9 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.30)  10 DEC 2015 22:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.30)  11 DEC 2015 17:06
 entering extended mode
 **Main.tex
-
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\M
-ain.tex
+(C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Main.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -338,8 +336,7 @@ Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
 \titlewidthlast=\dimen149
 \titlewidthfirst=\dimen150
 )
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\M
-ain.aux)
+(C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Main.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
 LaTeX Font Info:    ... okay on input line 34.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
@@ -352,7 +349,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
 LaTeX Font Info:    ... okay on input line 34.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
 LaTeX Font Info:    ... okay on input line 34.
- ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count118
 \scratchdimen=\dimen151
@@ -369,11 +367,10 @@ LaTeX Font Info:    ... okay on input line 34.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\T
-itle.tex
+ (C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Title.tex
 LaTeX Font Info:    Try loading font information for U+msa on input line 14.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 14.
@@ -384,30 +381,62 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Excluding 'comment' comment. [1
 
 {C:/Users/Natawut/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\M
-ain.toc)
+(C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Main.toc)
 \tf@toc=\write4
- [1]
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\I
-ntro.tex)
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\M
-ethods.tex [2]
+
+[1] (C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Intro.tex)
+(C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Methods.tex
+[2]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 12.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 12.
+ [3] [4])
+(C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Evaluation.tex
+[5]) (C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Results.tex
+[6] <compaccuracy.png, id=31, 589.0005pt x 444.4605pt>
+File: compaccuracy.png Graphic file (type png)
+ <use compaccuracy.png>
+Package pdftex.def Info: compaccuracy.png used on input line 8.
+(pdftex.def)             Requested size: 294.49953pt x 222.2297pt.
 
-[3] [4])
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\E
-valuation.tex [5])
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\R
-esults.tex)
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\C
-onclusion.tex)
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\M
-ain.bbl [6]
+[7 <C:/Users/Natawut/Documents/uic/MachineLearning/Project/Final/compaccuracy.p
+ng>] <ab_predict.png, id=37, 589.0005pt x 444.4605pt>
+File: ab_predict.png Graphic file (type png)
+ <use ab_predict.png>
+Package pdftex.def Info: ab_predict.png used on input line 19.
+(pdftex.def)             Requested size: 294.49953pt x 222.2297pt.
+
+[8 <C:/Users/Natawut/Documents/uic/MachineLearning/Project/Final/ab_predict.png
+>] <compexaccuracy.png, id=43, 589.0005pt x 444.4605pt>
+File: compexaccuracy.png Graphic file (type png)
+
+<use compexaccuracy.png>
+Package pdftex.def Info: compexaccuracy.png used on input line 41.
+(pdftex.def)             Requested size: 223.82251pt x 168.89674pt.
+ <compbinaccuracy.png, id=44, 589.0005pt x 444.4605pt>
+File: compbinaccuracy.png Graphic file (type png)
+
+<use compbinaccuracy.png>
+Package pdftex.def Info: compbinaccuracy.png used on input line 42.
+(pdftex.def)             Requested size: 223.82251pt x 168.89674pt.
+ <compoffbyone.png, id=45, 589.0005pt x 444.4605pt>
+File: compoffbyone.png Graphic file (type png)
+
+<use compoffbyone.png>
+Package pdftex.def Info: compoffbyone.png used on input line 51.
+(pdftex.def)             Requested size: 294.49953pt x 222.2297pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Conclusion.tex)
+(C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Main.bbl [9 <C:/U
+sers/Natawut/Documents/uic/MachineLearning/Project/Final/compexaccuracy.png> <C
+:/Users/Natawut/Documents/uic/MachineLearning/Project/Final/compbinaccuracy.png
+>]
 Underfull \hbox (badness 10000) in paragraph at lines 12--17
 []\OT1/cmr/m/sc/10 Digital Strat-egy Con-sult-ing Ltd.  \OT1/cmr/m/n/10 On-line
  re-view habits: Week-
@@ -422,27 +451,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--17
 Missing character: There is no â in font cmti10!
 Missing character: There is no € in font cmti10!
 Missing character: There is no ™ in font cmti10!
-[7]) [8]
-(C:\Users\Natawut\Documents\uic\MachineLearning\Project\CS412Yelp\latex\Final\M
-ain.aux) ) 
+[10 <C:/Users/Natawut/Documents/uic/MachineLearning/Project/Final/compoffbyone.
+png>]) [11]
+(C:\Users\Natawut\Documents\uic\MachineLearning\Project\Final\Main.aux) ) 
 Here is how much of TeX's memory you used:
- 5356 strings out of 493921
- 77823 string characters out of 3147275
- 142247 words of memory out of 3000000
- 8544 multiletter control sequences out of 15000+200000
+ 5392 strings out of 493921
+ 78105 string characters out of 3147275
+ 142251 words of memory out of 3000000
+ 8574 multiletter control sequences out of 15000+200000
  10723 words of font info for 40 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  36i,8n,43p,1713b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program F
-iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Main.pdf (9 pages, 136661 bytes).
+<C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+tt10.pfb>
+Output written on Main.pdf (12 pages, 307217 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
+ 84 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

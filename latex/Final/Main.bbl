@@ -22,6 +22,12 @@
 \newblock In {\em Proceedings of the 5th Conference on Language Resources and
   Evaluation (LREC’06)\/} (Genova, Italy, 2006), pp.~417--424.
 
+\bibitem{imbalance}
+{\sc Guerra, P.~C., Jr., W.~M., and Cardie, C.}
+\newblock Sentiment analysis on evolving social streams: How self-report
+  imbalances can help.
+\newblock In {\em Proceedings of the 7th ACM WSDM Conference\/} (2014).
+
 \bibitem{hu-liu}
 {\sc Hu, M., and Liu, B.}
 \newblock Mining and summarizing customer reviews.
