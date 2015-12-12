@@ -1,0 +1,32 @@
+\section{Evaluation}
+
+We evaluated the classifiers from each branch separately (and the recommender system in the profile-based branch).
+
+\subsection{Review-Based Branch}
+Due to the large size of the entire dataset (over 1.5 million reviews), we systematically divided the dataset in our evaluation. Moreover, because a part-of-speech tagger significantly increases the running time of extracting all of our features, we measured our classifiers' performances when they contained and did not contain the adjective and adverb count features separately. We first randomly chose 100,000 reviews from the full dataset, from which we randomly selected 70,000 to be the training set and 30,000 to be the test set. The features not including the adjective and adverb counts were then extracted from the training set, and then the classifiers were trained on these features and evaluated on the test set. The process of randomly choosing and splitting 100,000 reviews and training and evaluating the classifiers was repeated 9 more times, and the results were averaged over the 10 trials.
+
+We then randomly chose 10,000 reviews from the full dataset, from which we randomly selected 7,000 to be the training set and 3,000 to be the test set. The full set of features was then extracted from this smaller training set, and the classifiers were again trained and evaluated. As in the larger dataset, we performed a total of 10 trials. The smaller dataset allowed for the features, specifically the adjective and adverb count, to be extracted in a reasonable amount of time. Separating the dataset like this also allowed us to examine the impact the adjective and adverb count had on classification.
+
+To evaluate the performance of the classifiers, we recorded the general accuracy of each classifier (the percentage of correctly-labeled reviews), the accuracy of each classifier when predicting whether or not a review is five stars, the accuracy of each classifier when predicting whether a review is one star, five stars, or neither, and the ``soft'' accuracy of each classifier, in which the classifier is said to have made a correct prediction if the predicted label is at most one star off from the actual label. These types of accuracy allow us to look at different aspects of the classifier -- how well did it do in general, how well did it perform on predicting polarized reviews, and how often was it close enough to the actual label? This accounts for the possibility that the features were better suited for detecting polarized reviews (one star or five stars) rather than choosing one of the five class labels, as well as the possibility that many reviewers left reviews that were inconsistent with their final star rating from another perspective. These are important to consider, since it has been found that people online tend to report extreme feelings rather than average feelings, and positive feelings rather than negative feelings \cite{imbalance}.
+
+\subsection{Profile-Based Branch}
+\subsubsection{Classifier Evaluation}
+\begin{itemize}
+	\item \textbf{Random Forest}
+	A random forest is a meta estimator that fits a number of decision tree classifiers on various sub-samples of the dataset and use averaging to improve the predictive accuracy and control over-fitting. The sub-sample size is always the same as the original input sample size but the samples are drawn with replacement.
+	
+	In random forests, each tree in the ensemble is built from a sample drawn with replacement (i.e., a bootstrap sample) from the training set. In addition, when splitting a node during the construction of the tree, the split that is chosen is no longer the best split among all features. Instead, the split that is picked is the best split among a random subset of the features. As a result of this randomness, the bias of the forest usually slightly increases (with respect to the bias of a single non-random tree) but, due to averaging, its variance also decreases, usually more than compensating for the increase in bias, hence yielding an overall better model.
+	The \texttt{scikit-learn} implementation combines classifiers by averaging their probabilistic prediction, instead of letting each classifier vote for a single class.
+	\item \textbf{Support Vector Classifier}
+	A support vector machine constructs a hyper-plane or set of hyper-planes in a high or infinite dimensional space, which can be used for classification, regression or other tasks. Intuitively, a good separation is achieved by the hyper-plane that has the largest distance to the nearest training data points of any class (so-called functional margin), since in general the larger the margin the lower the generalization error of the classifier.
+	
+	SVC is one of the main function in the $ scikit-learn $ package. The fit time complexity is more than quadratic with the number of samples which makes it hard to scale to dataset with more than a couple of 10000 samples. And it could apply linear, polynomial, rbf, sigmoid and precomputed kernel functions.
+	\end{itemize}
+\subsubsection{Recommender System Evaluation}
+In our recommender system, we use a \emph{user-based} recommendation algorithm. We select 500,000 reviews and consider the set of users and businesses involved in those reviews. Considering different users may have different ``baselines'' around which their ratings are distributed, we use Pearson's correlation coefficient:
+
+$$ sim(u,v) = \frac{\sum_{i\in C}(r_{u,i}-\bar{r_u})(r_{v,i}-\bar{r_v})}{\sqrt{\sum_{i\in C}(r_{u,i}-\bar{r_u})^2}\sqrt{\sum_{i\in C}(r_{v,i}-\bar{r_v})^2}} $$
+to estimate the similarity between two users, where $C$ is the set of items that are co-rated by users $u$ and $v$ (i.e., items
+that have been rated by both of them), $r_{u,i}$ and $r_{v,i}$ are the ratings given to item $i$ by the target user $u$ and a possible neighbor $v$ respectively, and $r_u$ and $r_v$ are the average ratings of $u$ and $v$ respectively. Finally we give an estimated rating by $$p(u,i) = \bar{r_u} + \frac{\sum_{v\in V}sim(u,v)*(r_{v,i}-\bar{r_v})}{\sum_{v\in V}sim(u,v)}$$
+where $V$ is the set of $k$ similar users, $r_{v,i}$ is the rating of user $v$ given to item $i$, $\bar{r_u}$ and $\bar{r_v}$ are the average ratings of user $u$ and $v$ respectively, and $sim(u, v)$ is the Pearson correlation described above.
+For efficiency, we assign $k$ as 100, i.e, the first 100 top-related users, and then extract $20\%$ of the ratings from the rating matrix as test data, leaving $80\%$ of the ratings as the base for calculating similarity.
