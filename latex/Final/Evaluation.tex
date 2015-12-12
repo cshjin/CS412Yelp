@@ -14,3 +14,10 @@ To evaluate the performance of the classifiers, we recorded the general accuracy
 \subsubsection{Classifier Evaluation}
 
 \subsubsection{Recommender System Evaluation}
+In our recommender system, we use a \emph{user-based} recommendation algorithm. We select 500,000 reviews and consider the set of users and businesses involved in those reviews. Considering different users may have different ``baselines'' around which their ratings are distributed, we use Pearson's correlation coefficient:
+
+$$ sim(u,v) = \frac{\sum_{i\in C}(r_{u,i}-\bar{r_u})(r_{v,i}-\bar{r_v})}{\sqrt{\sum_{i\in C}(r_{u,i}-\bar{r_u})^2}\sqrt{\sum_{i\in C}(r_{v,i}-\bar{r_v})^2}} $$
+to estimate the similarity between two users, where $C$ is the set of items that are co-rated by users $u$ and $v$ (i.e., items
+that have been rated by both of them), $r_{u,i}$ and $r_{v,i}$ are the ratings given to item $i$ by the target user $u$ and a possible neighbor $v$ respectively, and $r_u$ and $r_v$ are the average ratings of $u$ and $v$ respectively. Finally we give an estimated rating by $$p(u,i) = \bar{r_u} + \frac{\sum_{v\in V}sim(u,v)*(r_{v,i}-\bar{r_v})}{\sum_{v\in V}sim(u,v)}$$
+where $V$ is the set of $k$ similar users, $r_{v,i}$ is the rating of user $v$ given to item $i$, $\bar{r_u}$ and $\bar{r_v}$ are the average ratings of user $u$ and $v$ respectively, and $sim(u, v)$ is the Pearson correlation described above.
+For efficiency, we assign $k$ as 100, i.e, the first 100 top-related users, and then extract $20\%$ of the ratings from the rating matrix as test data, leaving $80\%$ of the ratings as the base for calculating similarity.
