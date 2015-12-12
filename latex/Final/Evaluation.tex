@@ -10,9 +10,18 @@ We then randomly chose 10,000 reviews from the full dataset, from which we rando
 To evaluate the performance of the classifiers, we recorded the general accuracy of each classifier (the percentage of correctly-labeled reviews), the accuracy of each classifier when predicting whether or not a review is five stars, the accuracy of each classifier when predicting whether a review is one star, five stars, or neither, and the ``soft'' accuracy of each classifier, in which the classifier is said to have made a correct prediction if the predicted label is at most one star off from the actual label. These types of accuracy allow us to look at different aspects of the classifier -- how well did it do in general, how well did it perform on predicting polarized reviews, and how often was it close enough to the actual label? This accounts for the possibility that the features were better suited for detecting polarized reviews (one star or five stars) rather than choosing one of the five class labels, as well as the possibility that many reviewers left reviews that were inconsistent with their final star rating from another perspective. These are important to consider, since it has been found that people online tend to report extreme feelings rather than average feelings, and positive feelings rather than negative feelings \cite{imbalance}.
 
 \subsection{Profile-Based Branch}
-
 \subsubsection{Classifier Evaluation}
-
+\begin{itemize}
+	\item \textbf{Random Forest}
+	A random forest is a meta estimator that fits a number of decision tree classifiers on various sub-samples of the dataset and use averaging to improve the predictive accuracy and control over-fitting. The sub-sample size is always the same as the original input sample size but the samples are drawn with replacement.
+	
+	In random forests, each tree in the ensemble is built from a sample drawn with replacement (i.e., a bootstrap sample) from the training set. In addition, when splitting a node during the construction of the tree, the split that is chosen is no longer the best split among all features. Instead, the split that is picked is the best split among a random subset of the features. As a result of this randomness, the bias of the forest usually slightly increases (with respect to the bias of a single non-random tree) but, due to averaging, its variance also decreases, usually more than compensating for the increase in bias, hence yielding an overall better model.
+	The \texttt{scikit-learn} implementation combines classifiers by averaging their probabilistic prediction, instead of letting each classifier vote for a single class.
+	\item \textbf{Support Vector Classifier}
+	A support vector machine constructs a hyper-plane or set of hyper-planes in a high or infinite dimensional space, which can be used for classification, regression or other tasks. Intuitively, a good separation is achieved by the hyper-plane that has the largest distance to the nearest training data points of any class (so-called functional margin), since in general the larger the margin the lower the generalization error of the classifier.
+	
+	SVC is one of the main function in the $ scikit-learn $ package. The fit time complexity is more than quadratic with the number of samples which makes it hard to scale to dataset with more than a couple of 10000 samples. And it could apply linear, polynomial, rbf, sigmoid and precomputed kernel functions.
+	\end{itemize}
 \subsubsection{Recommender System Evaluation}
 In our recommender system, we use a \emph{user-based} recommendation algorithm. We select 500,000 reviews and consider the set of users and businesses involved in those reviews. Considering different users may have different ``baselines'' around which their ratings are distributed, we use Pearson's correlation coefficient:
 

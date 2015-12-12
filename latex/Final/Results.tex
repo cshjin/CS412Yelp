@@ -54,3 +54,31 @@ Finally, Figure \ref{offbyone} shows the mean ``soft'' accuracy of each classifi
 \end{figure}
 
 \subsection{Profile-Based Branch}
+\begin{itemize}
+	\item RandomForest (all reviews)
+	\begin{itemize}
+		\item number of trees in the forest: 10
+		\item minimum number of samples required to split an internal node: 1
+		\item number of jobs is set to the number of cores: 4
+		\item result: average cross validation score: 0.385 (3-fold)
+	\end{itemize}
+	\item SVC (support vector classifier) (10,000 reviews) \footnote{Due to the SVC function limitation in scikit-learn}
+	\begin{itemize}
+		\item Gaussian kernel: gamma (0.1), c(1)
+		\item Gaussian, 45
+		\item Linear c=1, 43 
+		\item Polynomial degree 2, 44
+		\item result: average cross validation score: 0.44 (3-fold)
+	\end{itemize}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\linewidth]{profileaccuracy}
+\caption{}
+\label{fig:profileaccuracy}
+\end{figure}
+
+\end{itemize}
+
+
+
+

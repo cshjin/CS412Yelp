@@ -57,12 +57,62 @@ recommended & 0.00105 & dry & -0.00143\\
 We use a variety of classifiers with these features to predict the star rating of a review (with the help of Python's \texttt{scikit} package): Decision Tree, Random Forest (with 10 decision trees), AdaBoost (with decision trees as weak learners), 5-Nearest Neighbors, 10-Nearest Neighbors, and 20-Nearest Neighbors. Each classifier predicts one of five labels (the five whole-valued star ratings) for each review in the test set.
 
 \subsection{Profile-Based Branch}
-For this branch, we posit that information from user and business profiles is sufficient for predicting which star rating a user will give a particular business. We draw data from user profiles, which include information about a user, from number of ``fans'' (other users who like this user's reviews) to ``elite'' status (Yelp's method of rewarding and distinguishing users who are more active in the community), as well as business profiles, which include information about a business, from hours of operation to whether or not the business has Wi-Fi.
+Another branch is based on profiles, which include both user and business. When guessing the potential rate a user gives to a particular business, it is obvious that the profile of a user and the profile of the business affect the rate associated. For example, a really yelper will leave a pertinent rate to a restaurant of his or her favorite. In this approach, we will combine the profiles of user and business first. And then analysis most relevant features when rating a business. We will try to apply several classifiers to work on the training data and to see how those works.
 
+For this branch, we posit that information from user and business profiles is sufficient for predicting which star rating a user will give a particular business. We draw data from user profiles, which include information about a user, from number of ``fans'' (other users who like this user's reviews) to ``elite'' status (Yelp's method of rewarding and distinguishing users who are more active in the community), as well as business profiles, which include information about a business, from hours of operation to whether or not the business has Wi-Fi.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{profile}
+\caption{}
+\label{fig:profile}
+\end{figure}
 \subsubsection{Features}
-User and business profiles contain a significantly greater number of features in the dataset than reviews alone, so of the 95 possible features, we used the ANOVA statistical testing to determine the 10 most important features -- the features with the greatest variance. The 10 features include 3 from user profiles (average star rating over all star ratings given to businesses, elite status, and amount of time the user has used Yelp) and 7 from business profiles (overall star rating, whether or not it has a TV, the kind of attire patrons are expected to wear, the number of reviews, the kind of parking lot available, whether or not it is good for late-night, and the BYOB/corkage policy).
+\begin{itemize}
+  \item \textbf{Flattening}. Since in the original data is a JSON nested format. In most classifier, we need a flattened data rather than nested format. After expanding the features, the business has 74 features and the user has 20 features, so totally, there are 94 features for each review.
+  \item \textbf{Categorizing}. In order to get the data suitable for \texttt{scikit-learn pipeline}, we need to modify the data as integers, especially for the data with string format and missing data. 
+  \\
+  \begin{minipage}{0.42\textwidth}
+  	\begin{verbatim}
+  	{
+  	"business_id": "b9WZJp5L1RZr4",
+  	"categories": [
+  	"Breakfast & Brunch",
+  	"Restaurants"
+  	],
+  	"review_count": 38,
+  	"attributes": {
+  	"Alcohol": "none",
+  	"Ambience": {
+  	"romantic": false,
+  	"casual": true
+  	},
+  	...
+  	}
+  	\end{verbatim}
+  \end{minipage}%
+  \hfill $ \implies $
+  \begin{minipage}{0.42\textwidth}
+  	
+  	\begin{verbatim}
+  	"b9WZJp5L1RZr4F1nxclOoQ": {
+  	"parking_garage": false, 
+  	"attr_upscale": false, 
+  	"Accepts Insurance": null, 
+  	"Noise Level": "average", 
+  	"Takes Reservations": true, 
+  	"goodfor_lunch": true, 
+  	"Has TV": false, 
+  	"Attire": "casual", 
+  	"Wheelchair Accessible": null, 
+  	"attr_hipster": false, 
+  	...
+  	}
+  	\end{verbatim}
+  \end{minipage}%
+  \item \textbf{Feature selection}. Since there are so many features and some of them are strong related to the rate, while some of them not. Picking the best features seems more important such that we can reduce the computation of classifiers. The best top 10 features are: \textit{"average\_stars", "stars", "elite", "yelping\_since", "review\_count", "Has TV", "parking\_lot", "Attire", "goodfor\_latenight", "BYOB/Corkage".}
+  
+\end{itemize}
 
 \subsubsection{Classifiers}
 In the profile-based branch, we train and evaluate a total of four classifiers. Three of the classifiers are SVM, but with three different kernels (Gaussian, linear, and polynomial of degree 2). The fourth classifier is Random Forest with 10 trees.
 
-\subsubsection{Recommender System}
